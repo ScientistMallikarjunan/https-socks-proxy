@@ -172,12 +172,13 @@ export default class SocksProxyAgent extends Agent {
 			debug('Upgrading socket connection to TLS');
 			const servername = opts.servername || host;
 			let rejectIfUnauthorized = opts.rejectUnauthorized || false;
+			let caList = opts.ca || [];
 			return tls.connect({
 				...omit(opts, 'host', 'hostname', 'path', 'port'),
 				socket,
 				servername,
 				rejectUnauthorized: rejectIfUnauthorized,
-				ca: opts.ca
+				ca: caList
 			});
 		}
 
