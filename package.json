@@ -1,7 +1,7 @@
 {
-  "name": "socks-proxy-agent",
-  "version": "5.0.0",
-  "description": "A SOCKS proxy `http.Agent` implementation for HTTP and HTTPS",
+  "name": "https-socks-proxy",
+  "version": "2.0.0",
+  "description": "Supporting HTTPS communication via SOCKS proxy",
   "main": "dist/index",
   "typings": "dist/index",
   "files": [
@@ -16,7 +16,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/TooTallNate/node-socks-proxy-agent.git"
+    "url": "https://github.com/ScientistMallikarjunan/https-socks-proxy"
   },
   "keywords": [
     "socks",
