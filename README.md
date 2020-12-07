@@ -1,11 +1,10 @@
-socks-proxy-agent
+HTTPS SOCKS PROXY Agent
 ================
 ### A SOCKS proxy `http.Agent` implementation for HTTP and HTTPS
-[![Build Status](https://github.com/TooTallNate/node-socks-proxy-agent/workflows/Node%20CI/badge.svg)](https://github.com/TooTallNate/node-socks-proxy-agent/actions?workflow=Node+CI)
 
 This module provides an `http.Agent` implementation that connects to a
 specified SOCKS proxy server, and can be used with the built-in `http`
-and `https` modules.
+,`https` and `node-fetch` modules.
 
 It can also be used in conjunction with the `ws` module to establish a WebSocket
 connection over a SOCKS proxy. See the "Examples" section below.
@@ -16,7 +15,7 @@ Installation
 Install with `npm`:
 
 ``` bash
-$ npm install socks-proxy-agent
+$ npm install https-socks-proxy
 ```
 
 
@@ -27,7 +26,7 @@ Examples
 
 ```ts
 import https from 'https';
-import { SocksProxyAgent } from 'socks-proxy-agent';
+import { SocksProxyAgent } from 'https-socks-proxy';
 
 const info = {
 	host: 'br41.nordvpn.com',
@@ -47,7 +46,7 @@ https.get('https://jsonip.org', { agent }, (res) => {
 ```js
 var url = require('url');
 var http = require('http');
-var SocksProxyAgent = require('socks-proxy-agent');
+var SocksProxyAgent = require('https-socks-proxy');
 
 // SOCKS proxy to connect to
 var proxy = process.env.socks_proxy || 'socks://127.0.0.1:1080';
@@ -73,7 +72,7 @@ http.get(opts, function (res) {
 ```js
 var url = require('url');
 var https = require('https');
-var SocksProxyAgent = require('socks-proxy-agent');
+var SocksProxyAgent = require('https-socks-proxy');
 
 // SOCKS proxy to connect to
 var proxy = process.env.socks_proxy || 'socks://127.0.0.1:1080';
@@ -88,6 +87,10 @@ var opts = url.parse(endpoint);
 var agent = new SocksProxyAgent(proxy);
 opts.agent = agent;
 
+//If you want HTTPS communication with CA enabled, then pass the following options
+// rejectUnauthorized : true / false
+// ca : [List of CA]
+
 https.get(opts, function (res) {
 	console.log('"response" event!', res.headers);
 	res.pipe(process.stdout);
@@ -98,7 +101,7 @@ https.get(opts, function (res) {
 
 ``` js
 var WebSocket = require('ws');
-var SocksProxyAgent = require('socks-proxy-agent');
+var SocksProxyAgent = require('https-socks-proxy');
 
 // SOCKS proxy to connect to
 var proxy = process.env.socks_proxy || 'socks://127.0.0.1:1080';
@@ -130,7 +133,7 @@ License
 
 (The MIT License)
 
-Copyright (c) 2013 Nathan Rajlich &lt;nathan@tootallnate.net&gt;
+Copyright (c) 2020 Mallikarjunan M <https://github.com/ScientistMallikarjunan>
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
